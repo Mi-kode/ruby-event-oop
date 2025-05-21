@@ -32,7 +32,14 @@ class Event
     end
 
     def is_soon?
-        Time.now.between?(start_date, start_date + 1800)
+        Time.now >= start_date - 1800 && Time.now <= start_date
+    end
+
+    def to_s
+        puts "Titre : #{@title}"
+        puts "Date de début : #{@start_date.strftime("%d/%m/%Y %H:%M")}"
+        puts "Durée : #{@duration} minutes"
+        puts "Invités : #{@attendees.join(', ')}"
     end
 
 end

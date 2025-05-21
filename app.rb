@@ -2,23 +2,39 @@
 require 'bundler'
 Bundler.require
 
-# lignes qui appellent les fichiers lib/user.rb et lib/event.rb
-# comme ça, tu peux faire User.new dans ce fichier d'application. Top.
-# require_relative 'lib/user'
 require_relative 'lib/event'
+require_relative 'lib/user'
 
+# Classe Event
 
-# Maintenant c'est open bar pour tester ton application. Tous les fichiers importants sont chargés
-# Tu peux faire User.new, Event.new, binding.pry, User.all, etc.
+event = Event.new("2010-10-31 12:00", 30, "RDV super important", ["pierre@pierre.com", "jean@jean.jean"])
 
-event = Event.new("2025-05-21 17:20", 10, "standup quotidien", ["truc@machin.com", "bidule@chose.fr"])
-puts "Événement de test :"
-puts "Date: #{event.start_date}"
-puts "Durée: #{event.duration} minutes"
-puts "Le rendez-vous fini à #{event.end_date}"
-puts "Titre: #{event.title}"
-puts "Participants: #{event.attendees}"
-puts "Le rendez-vous est-il passé ? #{event.is_past?}"
-puts "Le rendez-vous est-il à venir ? #{!event.is_past?}"
-puts "Le rendez-vous est-il pour bientôt ? #{event.is_soon?}"
-puts "Rendez-vous décalé au #{event.postpone_24h}"
+event.to_s
+
+# Classe User
+
+User.new("julie@julie.com", 35)
+User.new("jean@jean.com", 23)
+User.new("claude@claude.com", 75)
+
+puts "\nRecherche d'email :"
+print "> "
+email = gets.chomp
+
+user_1 = User.find_by_email(email)
+
+if user_1
+    puts "\nVoici l'âge du user trouvé : #{user_1.age} ans"
+else
+    puts "Aucun user trouvé."
+end
+
+# puts "Date: #{event.start_date}"
+# puts "Durée: #{event.duration} minutes"
+# puts "Le rendez-vous fini à #{event.end_date}"
+# puts "Titre: #{event.title}"
+# puts "Participants: #{event.attendees}"
+# puts "Le rendez-vous est-il passé ? #{event.is_past?}"
+# puts "Le rendez-vous est-il à venir ? #{!event.is_past?}"
+# puts "Le rendez-vous est-il pour bientôt ? #{event.is_soon?}"
+# puts "Rendez-vous décalé au #{event.postpone_24h}"
