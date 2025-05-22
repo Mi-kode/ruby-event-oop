@@ -36,7 +36,7 @@ class Event
     end
 
     def to_s
-        puts "Titre : #{@title}"
+        puts "\nTitre : #{@title}"
         puts "Date de début : #{@start_date.strftime("%d/%m/%Y %H:%M")}"
         puts "Durée : #{@duration} minutes"
         puts "Invités : #{@attendees.join(', ')}"
